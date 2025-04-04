@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function ComboBox({ items, selectedItem, onSelect, placeholder = 'Pilih item...' }) {
     const [open, setOpen] = useState(false);
 
-    const handleSelect = (value) => {
+    const handleSelect = value => {
         onSelect(value);
         setOpen(false);
     };
@@ -17,7 +17,7 @@ export default function ComboBox({ items, selectedItem, onSelect, placeholder = 
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
-                    {items.find((item) => item.label == selectedItem)?.label ?? 'Pilih item'}
+                    {items.find(item => item.label == selectedItem)?.label ?? 'Pilih item'}
                     <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
@@ -31,7 +31,7 @@ export default function ComboBox({ items, selectedItem, onSelect, placeholder = 
                         <CommandEmpty>Item tidak ditemukan</CommandEmpty>
                         <CommandGroup>
                             {items.map((item, index) => (
-                                <CommandItem key={index} value={item.value} onSelect={(value) => handleSelect(value)}>
+                                <CommandItem key={index} value={item.value} onSelect={value => handleSelect(value)}>
                                     {item.label}
                                     <CheckIcon
                                         className={cn(
